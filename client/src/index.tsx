@@ -1,7 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+import { Routes } from './Routes'
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<div />, document.getElementById('root') as HTMLElement)
+ReactDOM.render(<Routes />, document.getElementById('root') as HTMLElement)
 registerServiceWorker()
