@@ -9,6 +9,7 @@ import {
     CategoryName,
     CategoryCountItems
 } from './style'
+import { Button } from '../Button'
 
 export const Categories: React.SFC<{}> = () => (
     <Container>
@@ -24,5 +25,7 @@ export const Categories: React.SFC<{}> = () => (
                 </CategoryContent>
             </Category>
         ))}
+
+        <Button onClick={() => console.log('lol')} />
     </Container>
 )

@@ -5,6 +5,7 @@ import { MdFolder } from 'react-icons/md'
 export const Container = styled.div`
     width: 300px;
     height: 100vh;
+    position: relative;
     background-color: ${props => props.theme.lightgray};
 `
 export const Category = styled.div`
