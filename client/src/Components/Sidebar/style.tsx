@@ -16,8 +16,7 @@ export const Container = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #fdfdfd;
-    box-shadow: 0px 0px 15px lightgray;
+    background-color: white;
 `
 export const Icons = styled.div`
     height: 150px;
