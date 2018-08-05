@@ -1,11 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { injectGlobal } from 'styled-components'
+import { injectGlobal, ThemeProvider } from 'styled-components'
 
 import { Routes } from './Routes'
-import registerServiceWorker from './registerServiceWorker'
-import { ThemeProvider } from 'styled-components'
 import { theme } from './Theme'
+import registerServiceWorker from './registerServiceWorker'
 
 // tslint:disable-next-line
 injectGlobal`
