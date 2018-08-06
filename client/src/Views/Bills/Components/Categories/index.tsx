@@ -7,16 +7,17 @@ import {
     FolderIcon,
     CategoryContent,
     CategoryName,
-    CategoryCountItems
+    CategoryCountItems,
+    CategoryButton,
+    PlusIcon
 } from './style'
-import { Button } from '../Button'
 
 export const Categories: React.SFC<{}> = () => (
     <Container>
         <Subtitle>Categories</Subtitle>
 
         {[1, 2, 3, 4, 5, 6, 7].map(i => (
-            <Category>
+            <Category key={i}>
                 <FolderIcon />
 
                 <CategoryContent>
@@ -26,6 +27,8 @@ export const Categories: React.SFC<{}> = () => (
             </Category>
         ))}
 
-        <Button onClick={() => console.log('lol')} />
+        <CategoryButton onClick={() => console.log('lol')}>
+            <PlusIcon />
+        </CategoryButton>
     </Container>
 )

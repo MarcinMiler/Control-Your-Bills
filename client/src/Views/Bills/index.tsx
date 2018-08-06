@@ -4,7 +4,8 @@ import { Title } from 'src/Components/Title'
 import { Wrapper } from 'src/Components/Wrapper'
 import { Row } from 'src/Components/Row'
 import { Categories } from './Components/Categories'
-import { Background } from './style'
+import { Buttons } from './Components/Buttons'
+import { Background, Grid, Item } from './style'
 
 export const Bills: React.SFC<{}> = () => (
     <Row>
@@ -14,6 +15,13 @@ export const Bills: React.SFC<{}> = () => (
             <Background />
 
             <Title>Bills</Title>
+
+            <Grid>
+                <Item />
+                <Item />
+            </Grid>
+
+            <Buttons />
         </Wrapper>
     </Row>
 )
