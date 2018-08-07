@@ -41,7 +41,7 @@ export class Dropdown extends React.Component<Props, State> {
                 <Container onClick={() => this.open()}>
                     <Text>{currentValue}</Text>
 
-                    <ArrowDownIcon />
+                    <ArrowDownIcon rotate={isOpen ? 1 : 0} />
                 </Container>
 
                 {isOpen && (

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
@@ -26,6 +26,13 @@ export const Text = styled.p`
 export const ArrowDownIcon = styled(MdKeyboardArrowDown)`
     font-size: 28px;
     color: ${props => props.theme.darkblue};
+    transition: all 200ms ease;
+
+    ${props =>
+        props.rotate &&
+        css`
+            transform: rotate(180deg);
+        `};
 `
 export const Suggestions = styled.div`
     width: 150px;
