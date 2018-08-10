@@ -6,6 +6,7 @@ import { Row } from 'src/Components/Row'
 import { Categories } from './Components/Categories'
 import { Buttons } from './Components/Buttons'
 import { Background, Grid, Item } from './style'
+import { BillsList } from './Components/BillsList'
 
 export const Bills: React.SFC<{}> = () => (
     <Row>
@@ -22,6 +23,8 @@ export const Bills: React.SFC<{}> = () => (
             </Grid>
 
             <Buttons />
+
+            <BillsList />
         </Wrapper>
     </Row>
 )
