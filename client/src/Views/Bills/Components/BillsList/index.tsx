@@ -27,7 +27,7 @@ export const BillsList: React.SFC<{}> = () => (
             <Price>Total Price</Price>
             <Actions>Actions</Actions>
         </Legend>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map(bill => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(bill => (
             <Bill key={bill}>
                 <Id>
                     <Circle>#1</Circle>

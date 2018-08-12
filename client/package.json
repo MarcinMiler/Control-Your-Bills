@@ -8,6 +8,7 @@
     "react-icons": "^3.0.4",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
+    "recharts": "^1.1.0",
     "styled-components": "3.3.3"
   },
   "scripts": {
@@ -22,6 +23,7 @@
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
     "@types/react-router-dom": "^4.3.0",
+    "@types/recharts": "^1.0.26",
     "typescript": "^3.0.1"
   }
 }

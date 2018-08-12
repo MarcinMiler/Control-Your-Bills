@@ -16,7 +16,9 @@ export const Grid = styled.div`
     grid-column-gap: 50px;
 `
 export const Item = styled.div`
+    padding: 50px 50px 30px 30px;
     border-radius: 5px;
     background-color: white;
     box-shadow: 0px 6px 15px lightgray;
+    box-sizing: border-box;
 `
