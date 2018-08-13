@@ -1,0 +1,13 @@
+type Bill {
+    id: Int!
+    title: String!
+    date: String!
+    contract: Boolean!
+    price: Int!
+    userId: Int!
+    user: User!
+}
+
+type Query {
+    bills: [Bill!]
+}

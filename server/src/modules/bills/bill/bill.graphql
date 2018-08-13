@@ -1,0 +1,3 @@
+type Query {
+    bill(id: Int!): Bill!
+}
