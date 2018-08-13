@@ -1,0 +1,8 @@
+type Error {
+    message: String!
+}
+
+type User {
+    id: Int!
+    email: String!
+}
