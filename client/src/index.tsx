@@ -1,7 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
+import { ApolloProvider } from 'react-apollo'
 
+import { client } from './apollo'
 import { Routes } from './Routes'
 import { theme } from './Theme'
 import registerServiceWorker from './registerServiceWorker'
@@ -21,7 +23,9 @@ injectGlobal`
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-        <Routes />
+        <ApolloProvider client={client}>
+            <Routes />
+        </ApolloProvider>
     </ThemeProvider>,
     document.getElementById('root') as HTMLElement
 )

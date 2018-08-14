@@ -7,7 +7,7 @@ import { Categories } from './Components/Categories'
 import { Buttons } from './Components/Buttons'
 import { Background, Grid, Item } from './style'
 import { BillsList } from './Components/BillsList'
-import { AreaCharts } from '../../Components/LineChart'
+import { AreaCharts } from 'src/Components/LineChart'
 
 export const Bills: React.SFC<{}> = () => (
     <Row>
