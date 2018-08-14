@@ -22,7 +22,7 @@ const data = [
 const tickStyle = {
     fontSize: 12,
     fontFamily: 'Montserrat',
-    fontWeight: '500'
+    fontWeight: 500
 }
 
 export const AreaCharts: React.SFC<{}> = () => (

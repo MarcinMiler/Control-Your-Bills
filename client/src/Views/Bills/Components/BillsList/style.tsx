@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { MdAutorenew, MdModeEdit, MdClose } from 'react-icons/md'
 
 interface RenewIconProps {
-    active?: boolean
+    active?: number
 }
 
 export const Container = styled.div`

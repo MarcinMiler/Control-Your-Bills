@@ -1,17 +1,38 @@
 import * as React from 'react'
 
 import { Dropdown } from 'src/Components/Dropdown'
+import { Modal } from 'src/Components/Modal'
 import { Container, Button, PlusIcon } from './style'
 
 const items = ['Date', 'Price low', 'Price up']
 
-export const Buttons: React.SFC<{}> = () => (
-    <Container>
-        <Button>
-            Add bill
-            <PlusIcon />
-        </Button>
+interface State {
+    isOpenModal: boolean
+}
 
-        <Dropdown items={items} />
-    </Container>
-)
+export class Buttons extends React.Component<{}, State> {
+    public readonly state = {
+        isOpenModal: false
+    }
+
+    private handleClose = () => this.setState({ isOpenModal: false })
+
+    private open = () => this.setState({ isOpenModal: true })
+
+    public render() {
+        const { isOpenModal } = this.state
+
+        return (
+            <Container>
+                <Button onClick={() => this.open()}>
+                    Add bill
+                    <PlusIcon />
+                </Button>
+
+                <Dropdown items={items} />
+
+                {isOpenModal && <Modal handleClose={this.handleClose} />}
+            </Container>
+        )
+    }
+}

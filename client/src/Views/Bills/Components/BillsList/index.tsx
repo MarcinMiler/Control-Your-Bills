@@ -36,7 +36,7 @@ export const C: React.SFC<WithBills> = ({ bills, loading }) => (
                 <Title>{bill.title}</Title>
                 <Date>{bill.date}</Date>
                 <Contract>
-                    <RenewIcon active={bill.contract} />
+                    <RenewIcon active={bill.contract ? 1 : 0} />
                 </Contract>
                 <Price>$ {bill.price}</Price>
                 <Actions>
