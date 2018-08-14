@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { withBills, WithBills } from 'src/graphql/bills'
 import {
     Container,
     Bill,
@@ -17,7 +18,7 @@ import {
     CloseIcon
 } from './style'
 
-export const BillsList: React.SFC<{}> = () => (
+export const C: React.SFC<WithBills> = ({ bills, loading }) => (
     <Container>
         <Legend>
             <Id>ID</Id>
@@ -27,17 +28,17 @@ export const BillsList: React.SFC<{}> = () => (
             <Price>Total Price</Price>
             <Actions>Actions</Actions>
         </Legend>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(bill => (
-            <Bill key={bill}>
+        {bills.map((bill, i) => (
+            <Bill key={bill.id}>
                 <Id>
-                    <Circle>#1</Circle>
+                    <Circle>#{i}</Circle>
                 </Id>
-                <Title>Insurance</Title>
-                <Date>11.07.2018</Date>
+                <Title>{bill.title}</Title>
+                <Date>{bill.date}</Date>
                 <Contract>
-                    <RenewIcon active />
+                    <RenewIcon active={bill.contract} />
                 </Contract>
-                <Price>$ 200</Price>
+                <Price>$ {bill.price}</Price>
                 <Actions>
                     <IconGroup>
                         <EditIcon />
@@ -48,3 +49,5 @@ export const BillsList: React.SFC<{}> = () => (
         ))}
     </Container>
 )
+
+export const BillsList = withBills(C)

@@ -1,36 +1,40 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "apollo-cache-inmemory": "^1.2.7",
-    "apollo-client": "^2.3.8",
-    "apollo-link-http": "^1.5.4",
-    "graphql": "^0.13.2",
-    "graphql-tag": "^2.9.2",
-    "react": "^16.4.2",
-    "react-apollo": "^2.1.11",
-    "react-dom": "^16.4.2",
-    "react-icons": "^3.0.4",
-    "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "2.16.0",
-    "recharts": "^1.1.0",
-    "styled-components": "3.3.3"
-  },
-  "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  },
-  "devDependencies": {
-    "@types/jest": "^23.3.1",
-    "@types/node": "^10.5.6",
-    "@types/prop-types": "^15.5.5",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-router-dom": "^4.3.0",
-    "@types/recharts": "^1.0.26",
-    "typescript": "^3.0.1"
-  }
+    "name": "client",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "apollo-cache-inmemory": "^1.2.7",
+        "apollo-client": "^2.3.8",
+        "apollo-link-http": "^1.5.4",
+        "graphql": "^0.13.2",
+        "graphql-tag": "^2.9.2",
+        "react": "^16.4.2",
+        "react-apollo": "^2.1.11",
+        "react-dom": "^16.4.2",
+        "react-icons": "^3.0.4",
+        "react-router-dom": "^4.3.1",
+        "react-scripts-ts": "2.16.0",
+        "recharts": "^1.1.0",
+        "styled-components": "3.3.3"
+    },
+    "scripts": {
+        "start": "react-scripts-ts start",
+        "build": "react-scripts-ts build",
+        "test": "react-scripts-ts test --env=jsdom",
+        "eject": "react-scripts-ts eject",
+        "schema:download": "apollo schema:download --endpoint=http://localhost:4000/graphql",
+        "codegen:generate": "apollo codegen:generate --queries=./src/graphql/**/*.tsx --schema=./schema.json --target=typescript --outputFlat ./src/schemaTypes.ts",
+        "gen:types": "npm run schema:download && npm run codegen:generate"
+    },
+    "devDependencies": {
+        "@types/jest": "^23.3.1",
+        "@types/node": "^10.5.6",
+        "@types/prop-types": "^15.5.5",
+        "@types/react": "^16.4.7",
+        "@types/react-dom": "^16.0.6",
+        "@types/react-router-dom": "^4.3.0",
+        "@types/recharts": "^1.0.26",
+        "apollo": "^1.7.0",
+        "typescript": "^3.0.1"
+    }
 }

@@ -5,9 +5,9 @@ import { Wrapper } from 'src/Components/Wrapper'
 import { Row } from 'src/Components/Row'
 import { Categories } from './Components/Categories'
 import { Buttons } from './Components/Buttons'
-import { Background, Grid, Item } from './style'
 import { BillsList } from './Components/BillsList'
 import { AreaCharts } from 'src/Components/LineChart'
+import { Background, Grid, Item } from './style'
 
 export const Bills: React.SFC<{}> = () => (
     <Row>
