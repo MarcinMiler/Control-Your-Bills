@@ -1,7 +1,6 @@
 input AddBillInput {
     title: String!
     date: String!
-    contract: Boolean!
     price: Int!
 }
 

@@ -9,7 +9,6 @@ const billsQuery = gql`
             id
             title
             date
-            contract
             price
         }
     }

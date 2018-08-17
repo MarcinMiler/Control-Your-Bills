@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Dropdown } from 'src/Components/Dropdown'
 import { Modal } from 'src/Components/Modal'
 import { Container, Button, PlusIcon } from './style'
+import { AddBill } from '../AddBill'
 
 const items = ['Date', 'Price low', 'Price up']
 
@@ -12,7 +13,7 @@ interface State {
 
 export class Buttons extends React.Component<{}, State> {
     public readonly state = {
-        isOpenModal: false
+        isOpenModal: true
     }
 
     private handleClose = () => this.setState({ isOpenModal: false })
@@ -31,7 +32,11 @@ export class Buttons extends React.Component<{}, State> {
 
                 <Dropdown items={items} />
 
-                {isOpenModal && <Modal handleClose={this.handleClose} />}
+                {isOpenModal && (
+                    <Modal handleClose={this.handleClose}>
+                        <AddBill />
+                    </Modal>
+                )}
             </Container>
         )
     }

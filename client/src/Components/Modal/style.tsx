@@ -14,9 +14,8 @@ export const Container = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
 `
 export const Content = styled.div`
-    width: 1200px;
-    height: 600px;
-    padding: 30px;
+    width: 600px;
+    padding: 50px;
     position: relative;
     border-radius: 5px;
     background-color: white;

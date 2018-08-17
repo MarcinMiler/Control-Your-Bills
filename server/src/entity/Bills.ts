@@ -20,9 +20,6 @@ export class Bill extends BaseEntity {
     date: string
 
     @Column()
-    contract: boolean
-
-    @Column()
     price: number
 
     @Column()
