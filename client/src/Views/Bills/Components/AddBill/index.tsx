@@ -1,19 +1,41 @@
 import * as React from 'react'
+import { Formik, Form } from 'formik'
+import * as yup from 'yup'
 
-import { Input } from 'src/Components/Input'
-import { Button } from 'src/Components/Button'
-import { Title, Right } from './style'
+import { AddBill } from './AddBill'
 
-export const AddBill: React.SFC<{}> = () => (
-    <>
-        <Title>Add bill</Title>
+const schema = yup.object().shape({
+    title: yup.string().required(),
+    price: yup
+        .number()
+        .required()
+        .moreThan(0)
+})
 
-        <Input onChange={() => console.log('lol')} label="Title" type="text" />
+interface FormValues {
+    title: string
+    price: number
+}
 
-        <Input onChange={() => console.log('lol')} label="Price" type="text" />
+export class AddBillContainer extends React.Component<{}, {}> {
+    private submit = (values: FormValues) => console.log(values)
 
-        <Right>
-            <Button onClick={() => console.log('click')} text="Add bill" />
-        </Right>
-    </>
-)
+    public render() {
+        return (
+            <Formik<{}, FormValues>
+                initialValues={{
+                    title: '',
+                    price: 0
+                }}
+                validationSchema={schema}
+                onSubmit={this.submit}
+            >
+                {() => (
+                    <Form>
+                        <AddBill />
+                    </Form>
+                )}
+            </Formik>
+        )
+    }
+}

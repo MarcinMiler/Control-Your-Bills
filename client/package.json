@@ -6,6 +6,7 @@
         "apollo-cache-inmemory": "^1.2.7",
         "apollo-client": "^2.3.8",
         "apollo-link-http": "^1.5.4",
+        "formik": "^1.0.3",
         "graphql": "^0.13.2",
         "graphql-tag": "^2.9.2",
         "react": "^16.4.2",
@@ -15,7 +16,8 @@
         "react-router-dom": "^4.3.1",
         "react-scripts-ts": "2.16.0",
         "recharts": "^1.1.0",
-        "styled-components": "3.3.3"
+        "styled-components": "3.3.3",
+        "yup": "^0.26.2"
     },
     "scripts": {
         "start": "react-scripts-ts start",
@@ -34,6 +36,7 @@
         "@types/react-dom": "^16.0.6",
         "@types/react-router-dom": "^4.3.0",
         "@types/recharts": "^1.0.26",
+        "@types/yup": "^0.24.9",
         "apollo": "^1.7.0",
         "typescript": "^3.0.1"
     }

@@ -1,15 +1,29 @@
 import * as React from 'react'
-import { Container, Label, StyledInput } from './style'
+import { FieldProps } from 'formik'
+
+import { Container, Label, StyledInput, ErrorMessage } from './style'
 
 interface Props {
-    onChange: () => void
     label: string
-    type: string
 }
 
-export const Input: React.SFC<Props> = ({ onChange, label, type }) => (
-    <Container>
-        <Label>{label}</Label>
-        <StyledInput onChange={onChange} type={type} />
-    </Container>
-)
+export const Input: React.SFC<FieldProps<any> & Props> = ({
+    field: { onChange, ...field },
+    form: { errors, touched },
+    label,
+    ...props
+}) => {
+    const errorMsg = touched[field.name] && errors[field.name]
+    return (
+        <Container>
+            <Label>{label}</Label>
+            <StyledInput
+                onChange={onChange}
+                error={!!errorMsg}
+                {...field}
+                {...props}
+            />
+            {errorMsg && <ErrorMessage>{errorMsg}</ErrorMessage>}
+        </Container>
+    )
+}

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Dropdown } from 'src/Components/Dropdown'
 import { Modal } from 'src/Components/Modal'
 import { Container, Button, PlusIcon } from './style'
-import { AddBill } from '../AddBill'
+import { AddBillContainer } from '../AddBill'
 
 const items = ['Date', 'Price low', 'Price up']
 
@@ -34,7 +34,7 @@ export class Buttons extends React.Component<{}, State> {
 
                 {isOpenModal && (
                     <Modal handleClose={this.handleClose}>
-                        <AddBill />
+                        <AddBillContainer />
                     </Modal>
                 )}
             </Container>
