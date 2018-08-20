@@ -2,6 +2,22 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: AddBillMutation
+// ====================================================
+
+export interface AddBillMutation {
+  addBill: boolean;
+}
+
+export interface AddBillMutationVariables {
+  title: string;
+  price: number;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: BillsQuery
 // ====================================================
 
@@ -9,7 +25,6 @@ export interface BillsQuery_bills {
   id: number;
   title: string;
   date: string;
-  contract: boolean;
   price: number;
 }
 

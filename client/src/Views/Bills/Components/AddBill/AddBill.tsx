@@ -11,7 +11,12 @@ export const AddBill: React.SFC = () => (
 
         <Field name="title" placeholder="Title" component={Input} />
 
-        <Field name="price" component={Input} />
+        <Field
+            name="price"
+            placeholder="Price"
+            component={Input}
+            type="number"
+        />
 
         <Right>
             <Button text="Add bill" type="submit" />
