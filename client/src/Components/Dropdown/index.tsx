@@ -9,54 +9,36 @@ import {
     Relative
 } from './style'
 
-interface State {
-    isOpen: boolean
-    currentValue: string
-}
-
 interface Props {
+    open: boolean
     items: string[]
+    currentValue: string
+    toggle: () => void
+    selectNewValue: (value: string) => void
 }
 
-export class Dropdown extends React.Component<Props, State> {
-    public readonly state = {
-        isOpen: false,
-        currentValue: this.props.items[0]
-    }
+export const Dropdown: React.SFC<Props> = ({
+    open,
+    items,
+    currentValue,
+    toggle,
+    selectNewValue
+}) => (
+    <Relative>
+        <Container onClick={toggle}>
+            <Text>{currentValue}</Text>
 
-    private selectNewValue = (value: string) =>
-        this.setState({ isOpen: false, currentValue: value })
+            <ArrowDownIcon rotate={open ? 1 : 0} />
+        </Container>
 
-    private open = () =>
-        this.setState(
-            ({ isOpen }) =>
-                isOpen === true ? { isOpen: false } : { isOpen: true }
-        )
-
-    public render() {
-        const { isOpen, currentValue } = this.state
-
-        return (
-            <Relative>
-                <Container onClick={() => this.open()}>
-                    <Text>{currentValue}</Text>
-
-                    <ArrowDownIcon rotate={isOpen ? 1 : 0} />
-                </Container>
-
-                {isOpen && (
-                    <Suggestions>
-                        {this.props.items.map((item, i) => (
-                            <Suggestion
-                                key={i}
-                                onClick={() => this.selectNewValue(item)}
-                            >
-                                <Text>{item}</Text>
-                            </Suggestion>
-                        ))}
-                    </Suggestions>
-                )}
-            </Relative>
-        )
-    }
-}
+        {open && (
+            <Suggestions>
+                {items.map((item, i) => (
+                    <Suggestion key={i} onClick={() => selectNewValue(item)}>
+                        <Text>{item}</Text>
+                    </Suggestion>
+                ))}
+            </Suggestions>
+        )}
+    </Relative>
+)

@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { Subscribe } from 'unstated'
 
 import { Dropdown } from 'src/Components/Dropdown'
 import { Modal } from 'src/Components/Modal'
-import { Container, Button, PlusIcon } from './style'
 import { AddBillContainer } from '../AddBill'
-
-const items = ['Date', 'Price low', 'Price up']
+import { FilterBills } from '../../Containers/FilterBills'
+import { Container, Button, PlusIcon } from './style'
 
 interface State {
     isOpenModal: boolean
@@ -13,7 +13,7 @@ interface State {
 
 export class Buttons extends React.Component<{}, State> {
     public readonly state = {
-        isOpenModal: true
+        isOpenModal: false
     }
 
     private handleClose = () => this.setState({ isOpenModal: false })
@@ -30,7 +30,11 @@ export class Buttons extends React.Component<{}, State> {
                     <PlusIcon />
                 </Button>
 
-                <Dropdown items={items} />
+                <Subscribe to={[FilterBills]}>
+                    {({ state: { ...state }, ...actions }: FilterBills) => (
+                        <Dropdown {...state} {...actions} />
+                    )}
+                </Subscribe>
 
                 {isOpenModal && (
                     <Modal handleClose={this.handleClose}>

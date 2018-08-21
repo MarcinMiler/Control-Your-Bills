@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import { ApolloProvider } from 'react-apollo'
+import { Provider as UnstatedProvider } from 'unstated'
 
 import { client } from './apollo'
 import { Routes } from './Routes'
@@ -24,7 +25,9 @@ injectGlobal`
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-            <Routes />
+            <UnstatedProvider>
+                <Routes />
+            </UnstatedProvider>
         </ApolloProvider>
     </ThemeProvider>,
     document.getElementById('root') as HTMLElement

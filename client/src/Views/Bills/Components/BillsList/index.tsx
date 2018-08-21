@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as moment from 'moment'
 
 import { withBills, WithBills } from 'src/graphql/bills'
 import {
@@ -34,7 +35,7 @@ export const C: React.SFC<WithBills> = ({ bills, loading }) => (
                     <Circle>#{i}</Circle>
                 </Id>
                 <Title>{bill.title}</Title>
-                <Date>{bill.date}</Date>
+                <Date>{moment(bill.date).format('DD.MM.YYYY')}</Date>
                 <Contract>
                     <RenewIcon active={0} />
                 </Contract>
