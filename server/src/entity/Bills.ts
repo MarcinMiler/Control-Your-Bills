@@ -3,7 +3,8 @@ import {
     BaseEntity,
     PrimaryGeneratedColumn,
     Column,
-    ManyToOne
+    ManyToOne,
+    BeforeInsert
 } from 'typeorm'
 
 import { User } from './User'
@@ -17,7 +18,7 @@ export class Bill extends BaseEntity {
     title: string
 
     @Column()
-    date: string
+    date: Date
 
     @Column()
     price: number
@@ -27,4 +28,9 @@ export class Bill extends BaseEntity {
 
     @ManyToOne(() => User, user => user.bills)
     user: User
+
+    @BeforeInsert()
+    generateDate() {
+        this.date = new Date()
+    }
 }

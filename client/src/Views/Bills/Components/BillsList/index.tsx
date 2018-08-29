@@ -1,54 +1,46 @@
 import * as React from 'react'
-import * as moment from 'moment'
+import * as _ from 'lodash'
 
 import { withBills, WithBills } from 'src/graphql/bills'
-import {
-    Container,
-    Bill,
-    Legend,
-    Id,
-    Title,
-    Date,
-    Contract,
-    Price,
-    Actions,
-    Circle,
-    RenewIcon,
-    IconGroup,
-    EditIcon,
-    CloseIcon
-} from './style'
+import { BillsListUI } from './BillsList'
 
-export const C: React.SFC<WithBills> = ({ bills, loading }) => (
-    <Container>
-        <Legend>
-            <Id>ID</Id>
-            <Title>Title</Title>
-            <Date>Date</Date>
-            <Contract>Contract</Contract>
-            <Price>Total Price</Price>
-            <Actions>Actions</Actions>
-        </Legend>
-        {bills.map((bill, i) => (
-            <Bill key={bill.id}>
-                <Id>
-                    <Circle>#{i}</Circle>
-                </Id>
-                <Title>{bill.title}</Title>
-                <Date>{moment(bill.date).format('DD.MM.YYYY')}</Date>
-                <Contract>
-                    <RenewIcon active={0} />
-                </Contract>
-                <Price>$ {bill.price}</Price>
-                <Actions>
-                    <IconGroup>
-                        <EditIcon />
-                        <CloseIcon />
-                    </IconGroup>
-                </Actions>
-            </Bill>
-        ))}
-    </Container>
-)
+const invertDirection = {
+    asc: 'desc',
+    desc: 'asc'
+}
+
+interface State {
+    columnToSort: string
+    sortDirection: string
+}
+
+class C extends React.Component<WithBills, State> {
+    public readonly state = {
+        columnToSort: '',
+        sortDirection: 'desc'
+    }
+
+    private handleSort = (columnName: string) =>
+        this.setState(({ sortDirection, columnToSort }) => ({
+            columnToSort: columnName,
+            sortDirection:
+                columnToSort === columnName
+                    ? invertDirection[sortDirection]
+                    : 'asc'
+        }))
+
+    public render() {
+        const { columnToSort, sortDirection } = this.state
+        const { bills, ...rest } = this.props
+
+        return (
+            <BillsListUI
+                bills={_.orderBy(bills, columnToSort, sortDirection)}
+                handleSort={this.handleSort}
+                {...rest}
+            />
+        )
+    }
+}
 
 export const BillsList = withBills(C)

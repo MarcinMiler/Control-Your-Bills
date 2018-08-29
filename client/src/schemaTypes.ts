@@ -5,8 +5,15 @@
 // GraphQL mutation operation: AddBillMutation
 // ====================================================
 
+export interface AddBillMutation_addBill {
+  id: number;
+  title: string;
+  date: string;
+  price: number;
+}
+
 export interface AddBillMutation {
-  addBill: boolean;
+  addBill: AddBillMutation_addBill;
 }
 
 export interface AddBillMutationVariables {

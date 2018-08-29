@@ -5,7 +5,12 @@ import { AddBillMutationVariables, AddBillMutation } from '../../schemaTypes'
 
 export const addBillMutation = gql`
     mutation AddBillMutation($title: String!, $price: Int!) {
-        addBill(input: { title: $title, price: $price })
+        addBill(input: { title: $title, price: $price }) {
+            id
+            title
+            date
+            price
+        }
     }
 `
 export interface WithAddBill {
@@ -24,7 +29,11 @@ export const withAddBill = graphql<
                 return
             }
 
-            await mutate({ variables })
+            const lol = await mutate({ variables })
+            console.log(lol)
         }
-    })
+    }),
+    options: {
+        refetchQueries: ['bills']
+    }
 })

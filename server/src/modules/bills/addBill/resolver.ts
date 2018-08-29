@@ -4,13 +4,11 @@ import { Bill } from '../../../entity/Bills'
 
 export const resolver: ResolverMap = {
     Mutation: {
-        addBill: async (_, { input }, { userId }) => {
+        addBill: async (_, { input }) => {
             try {
-                await Bill.create({ ...input, userId }).save()
-
-                return true
+                return await Bill.create({ ...input, userId: 1 }).save()
             } catch (err) {
-                return false
+                return null
             }
         }
     }

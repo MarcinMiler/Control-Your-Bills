@@ -1,9 +1,8 @@
 input AddBillInput {
     title: String!
-    date: String!
     price: Int!
 }
 
 type Mutation {
-    addBill(input: AddBillInput!): Boolean!
+    addBill(input: AddBillInput!): Bill!
 }
