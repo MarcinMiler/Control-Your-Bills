@@ -6,7 +6,11 @@ export const resolver: ResolverMap = {
     Mutation: {
         addBill: async (_, { input }) => {
             try {
-                return await Bill.create({ ...input, userId: 1 }).save()
+                return await Bill.create({
+                    ...input,
+                    userId: 1,
+                    categoryId: 3
+                }).save()
             } catch (err) {
                 return null
             }

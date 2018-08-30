@@ -4,8 +4,10 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    ManyToOne
+    ManyToOne,
+    RelationCount
 } from 'typeorm'
+
 import { Bill } from './Bills'
 import { User } from './User'
 
@@ -19,6 +21,9 @@ export class Category extends BaseEntity {
 
     @Column()
     userId: number
+
+    @RelationCount((category: Category) => category.bills)
+    billCount: number
 
     @ManyToOne(() => User, user => user.categories)
     user: User

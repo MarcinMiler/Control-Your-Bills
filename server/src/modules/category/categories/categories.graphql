@@ -1,0 +1,9 @@
+type Category {
+    id: Int!
+    name: String!
+    bills: [Bill!]
+}
+
+type Query {
+    categories: [Category!]
+}
