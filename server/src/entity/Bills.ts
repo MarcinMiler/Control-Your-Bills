@@ -7,7 +7,7 @@ import {
     BeforeInsert
 } from 'typeorm'
 
-import { User } from './User'
+import { Category } from './Category'
 
 @Entity()
 export class Bill extends BaseEntity {
@@ -24,10 +24,10 @@ export class Bill extends BaseEntity {
     price: number
 
     @Column()
-    userId: number
+    categoryId: number
 
-    @ManyToOne(() => User, user => user.bills)
-    user: User
+    @ManyToOne(() => Category, category => category.bills)
+    category: Category
 
     @BeforeInsert()
     generateDate() {

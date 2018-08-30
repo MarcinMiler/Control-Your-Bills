@@ -8,7 +8,7 @@ import {
 } from 'typeorm'
 import * as bcrypt from 'bcryptjs'
 
-import { Bill } from './Bills'
+import { Category } from './Category'
 
 @Entity()
 export class User extends BaseEntity {
@@ -21,8 +21,8 @@ export class User extends BaseEntity {
     @Column()
     password: string
 
-    @OneToMany(() => Bill, bill => bill.user)
-    bills: Bill[]
+    @OneToMany(() => Category, category => category.user)
+    categories: Category[]
 
     @BeforeInsert()
     async hashPassword() {
