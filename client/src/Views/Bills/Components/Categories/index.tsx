@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { withCategories, WithCategories } from 'src/graphql/categories'
 import { Subtitle } from 'src/Components/Subtitle'
 import {
     Container,
@@ -12,17 +13,19 @@ import {
     PlusIcon
 } from './style'
 
-export const Categories: React.SFC<{}> = () => (
+export const C: React.SFC<WithCategories> = ({ categories }) => (
     <Container>
         <Subtitle>Categories</Subtitle>
 
-        {[1, 2, 3, 4, 5, 6, 7].map(i => (
-            <Category key={i}>
+        {categories.map(category => (
+            <Category key={category.id}>
                 <FolderIcon />
 
                 <CategoryContent>
-                    <CategoryName>Car</CategoryName>
-                    <CategoryCountItems>8 items</CategoryCountItems>
+                    <CategoryName>{category.name}</CategoryName>
+                    <CategoryCountItems>
+                        {category.billsCount} items
+                    </CategoryCountItems>
                 </CategoryContent>
             </Category>
         ))}
@@ -32,3 +35,5 @@ export const Categories: React.SFC<{}> = () => (
         </CategoryButton>
     </Container>
 )
+
+export const Categories = withCategories(C)

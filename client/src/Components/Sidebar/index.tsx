@@ -16,7 +16,7 @@ const C: React.SFC<RouteComponentProps<{}>> = ({
 
             <ListIcon
                 active={pathname === '/bills' ? 1 : 0}
-                onClick={() => push('/bills')}
+                onClick={() => push('/bills/1')}
             />
         </Icons>
     </Container>

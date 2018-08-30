@@ -23,7 +23,7 @@ export class Category extends BaseEntity {
     userId: number
 
     @RelationCount((category: Category) => category.bills)
-    billCount: number
+    billsCount: number
 
     @ManyToOne(() => User, user => user.categories)
     user: User

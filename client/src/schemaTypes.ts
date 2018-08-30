@@ -42,6 +42,31 @@ export interface BillsQuery {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: CategoriesQuery
+// ====================================================
+
+export interface CategoriesQuery_categories_bills {
+  id: number;
+  title: string;
+  date: string;
+  price: number;
+}
+
+export interface CategoriesQuery_categories {
+  id: number;
+  name: string;
+  billsCount: number;
+  bills: CategoriesQuery_categories_bills[] | null;
+}
+
+export interface CategoriesQuery {
+  categories: CategoriesQuery_categories[] | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
