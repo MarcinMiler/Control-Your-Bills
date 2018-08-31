@@ -46,22 +46,40 @@ export interface BillsQuery {
 // GraphQL query operation: CategoriesQuery
 // ====================================================
 
-export interface CategoriesQuery_categories_bills {
+export interface CategoriesQuery_categories {
+  id: number;
+  name: string;
+  billsCount: number;
+}
+
+export interface CategoriesQuery {
+  categories: CategoriesQuery_categories[] | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: CategoryQuery
+// ====================================================
+
+export interface CategoryQuery_category_bills {
   id: number;
   title: string;
   date: string;
   price: number;
 }
 
-export interface CategoriesQuery_categories {
-  id: number;
-  name: string;
-  billsCount: number;
-  bills: CategoriesQuery_categories_bills[] | null;
+export interface CategoryQuery_category {
+  bills: CategoryQuery_category_bills[] | null;
 }
 
-export interface CategoriesQuery {
-  categories: CategoriesQuery_categories[] | null;
+export interface CategoryQuery {
+  category: CategoryQuery_category;
+}
+
+export interface CategoryQueryVariables {
+  id: string;
 }
 
 /* tslint:disable */

@@ -1,39 +1,31 @@
 import * as React from 'react'
+import { withRouter, RouteComponentProps } from 'react-router'
 
-import { withCategories, WithCategories } from 'src/graphql/categories'
-import { Subtitle } from 'src/Components/Subtitle'
-import {
-    Container,
-    Category,
-    FolderIcon,
-    CategoryContent,
-    CategoryName,
-    CategoryCountItems,
-    CategoryButton,
-    PlusIcon
-} from './style'
+import { FindCategories } from 'src/graphql/categories'
+import { CategoriesUI } from './Categories'
 
-export const C: React.SFC<WithCategories> = ({ categories }) => (
-    <Container>
-        <Subtitle>Categories</Subtitle>
+class C extends React.Component<RouteComponentProps<{ id: string }>, {}> {
+    public render() {
+        const {
+            history: { push }
+        } = this.props
+        return (
+            <FindCategories>
+                {data => {
+                    if (data.loading) {
+                        return <div>loading...</div>
+                    }
 
-        {categories.map(category => (
-            <Category key={category.id}>
-                <FolderIcon />
+                    return (
+                        <CategoriesUI
+                            categories={data.categories}
+                            push={push}
+                        />
+                    )
+                }}
+            </FindCategories>
+        )
+    }
+}
 
-                <CategoryContent>
-                    <CategoryName>{category.name}</CategoryName>
-                    <CategoryCountItems>
-                        {category.billsCount} items
-                    </CategoryCountItems>
-                </CategoryContent>
-            </Category>
-        ))}
-
-        <CategoryButton onClick={() => console.log('lol')}>
-            <PlusIcon />
-        </CategoryButton>
-    </Container>
-)
-
-export const Categories = withCategories(C)
+export const Categories = withRouter(C)

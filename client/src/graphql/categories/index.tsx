@@ -1,42 +1,46 @@
-import { graphql } from 'react-apollo'
+import * as React from 'react'
+import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import { CategoriesQuery_categories, CategoriesQuery } from '../../schemaTypes'
+import { CategoriesQuery_categories, CategoriesQuery } from 'src/schemaTypes'
 
-export const categoriesQuery = gql`
+const query = gql`
     query CategoriesQuery {
         categories {
             id
             name
             billsCount
-            bills {
-                id
-                title
-                date
-                price
-            }
         }
     }
 `
+
 export interface WithCategories {
     categories: CategoriesQuery_categories[]
     loading: boolean
 }
 
-export const withCategories = graphql<any, CategoriesQuery, {}, WithCategories>(
-    categoriesQuery,
-    {
-        props: ({ data }) => {
-            let categories: CategoriesQuery_categories[] = []
+interface Props {
+    children: (data: WithCategories) => React.ReactNode | null
+}
 
-            if (data && !data.loading && data.categories) {
-                categories = data.categories
-            }
+export class FindCategories extends React.PureComponent<Props> {
+    public render() {
+        const { children } = this.props
+        return (
+            <Query<CategoriesQuery> query={query}>
+                {({ data, loading }) => {
+                    let categories: CategoriesQuery_categories[] = []
 
-            return {
-                categories,
-                loading: data ? data.loading : false
-            }
-        }
+                    if (data && data.categories) {
+                        categories = data.categories
+                    }
+
+                    return children({
+                        categories,
+                        loading
+                    })
+                }}
+            </Query>
+        )
     }
-)
+}
