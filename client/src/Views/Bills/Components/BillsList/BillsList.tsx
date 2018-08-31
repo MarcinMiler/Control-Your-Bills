@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as moment from 'moment'
 
-import { WithBills } from 'src/graphql/bills'
+import { CategoryQuery_category_bills } from 'src/schemaTypes'
 import {
     Container,
     Bill,
@@ -20,13 +20,11 @@ import {
 } from './style'
 
 interface Props {
+    bills: CategoryQuery_category_bills[]
     handleSort: (columnName: string) => void
 }
 
-export const BillsListUI: React.SFC<Props & WithBills> = ({
-    bills,
-    handleSort
-}) => (
+export const BillsListUI: React.SFC<Props> = ({ bills, handleSort }) => (
     <Container>
         <Legend>
             <Id>ID</Id>

@@ -1,8 +1,9 @@
 import * as React from 'react'
 import * as _ from 'lodash'
 
-import { withBills, WithBills } from 'src/graphql/bills'
 import { BillsListUI } from './BillsList'
+import { FindCategory } from 'src/graphql/category'
+import { withRouter, RouteComponentProps } from 'react-router'
 
 const invertDirection = {
     asc: 'desc',
@@ -14,7 +15,7 @@ interface State {
     sortDirection: string
 }
 
-class C extends React.Component<WithBills, State> {
+class C extends React.Component<RouteComponentProps<{ id: string }>, State> {
     public readonly state = {
         columnToSort: '',
         sortDirection: 'desc'
@@ -31,16 +32,33 @@ class C extends React.Component<WithBills, State> {
 
     public render() {
         const { columnToSort, sortDirection } = this.state
-        const { bills, ...rest } = this.props
+        const {
+            match: {
+                params: { id }
+            }
+        } = this.props
 
         return (
-            <BillsListUI
-                bills={_.orderBy(bills, columnToSort, sortDirection)}
-                handleSort={this.handleSort}
-                {...rest}
-            />
+            <FindCategory id={id}>
+                {data => {
+                    if (data.loading || !data.category) {
+                        return <div>loading...</div>
+                    }
+
+                    return (
+                        <BillsListUI
+                            bills={_.orderBy(
+                                data.category.bills,
+                                columnToSort,
+                                sortDirection
+                            )}
+                            handleSort={this.handleSort}
+                        />
+                    )
+                }}
+            </FindCategory>
         )
     }
 }
 
-export const BillsList = withBills(C)
+export const BillsList = withRouter(C)
