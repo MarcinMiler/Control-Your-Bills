@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import { Sidebar } from '../Components/Sidebar'
 import { Layout } from '../Components/Layout'
@@ -12,10 +12,8 @@ export const Routes = () => (
             <Sidebar />
 
             <Layout>
-                <Switch>
-                    <Route exact path="/" component={Dashboard} />
-                    <Route path="/bills/:id" component={Bills} />
-                </Switch>
+                <Route exact path="/" component={Dashboard} />
+                <Route path="/bills" component={Bills} />
             </Layout>
         </>
     </BrowserRouter>

@@ -8,6 +8,7 @@ import { Buttons } from './Components/Buttons'
 import { BillsList } from './Components/BillsList'
 import { AreaCharts } from 'src/Components/LineChart'
 import { Background, Grid, Item } from './style'
+import { Route } from 'react-router'
 
 export const Bills: React.SFC<{}> = () => (
     <Row>
@@ -16,18 +17,25 @@ export const Bills: React.SFC<{}> = () => (
         <Wrapper>
             <Background />
 
-            <Title>Bills</Title>
+            <Route
+                path="/bills/:id"
+                component={() => (
+                    <>
+                        <Title>Bills</Title>
 
-            <Grid>
-                <Item>
-                    <AreaCharts />
-                </Item>
-                <Item />
-            </Grid>
+                        <Grid>
+                            <Item>
+                                <AreaCharts />
+                            </Item>
+                            <Item />
+                        </Grid>
 
-            <Buttons />
+                        <Buttons />
 
-            <BillsList />
+                        <BillsList />
+                    </>
+                )}
+            />
         </Wrapper>
     </Row>
 )
