@@ -25,6 +25,21 @@ export interface AddBillMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateCategoryMutation
+// ====================================================
+
+export interface CreateCategoryMutation {
+  createCategory: boolean;
+}
+
+export interface CreateCategoryMutationVariables {
+  name: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: BillsQuery
 // ====================================================
 

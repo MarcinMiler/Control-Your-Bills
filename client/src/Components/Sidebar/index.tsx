@@ -15,7 +15,7 @@ const C: React.SFC<RouteComponentProps<{}>> = ({
             />
 
             <ListIcon
-                active={pathname === '/bills' ? 1 : 0}
+                active={pathname.includes('/bills') ? 1 : 0}
                 onClick={() => push('/bills')}
             />
         </Icons>
