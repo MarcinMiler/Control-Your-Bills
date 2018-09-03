@@ -1,10 +1,8 @@
 import * as React from 'react'
-import { render, cleanup, fireEvent } from 'react-testing-library'
-
+import { render, fireEvent } from 'react-testing-library'
 import 'jest-dom/extend-expect'
-import { Button } from './index'
 
-afterEach(cleanup)
+import { Button } from './index'
 
 describe('Button', () => {
     it('should render correct', () => {
