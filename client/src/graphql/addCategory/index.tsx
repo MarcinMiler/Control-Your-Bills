@@ -2,11 +2,11 @@ import * as React from 'react'
 import gql from 'graphql-tag'
 import { MutationFn, Mutation } from 'react-apollo'
 
+import { CATEGORIES_QUERY } from '../categories'
 import {
     CreateCategoryMutation,
     CreateCategoryMutationVariables
 } from 'src/schemaTypes'
-import { CATEGORIES_QUERY } from '../categories'
 
 const mutation = gql`
     mutation CreateCategoryMutation($name: String!) {
