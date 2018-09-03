@@ -4,12 +4,13 @@ import { Category } from '../../../entity/Category'
 export const resolver: ResolverMap = {
     Mutation: {
         createCategory: async (_, { name }) => {
-            try {
-                await Category.create({ name, userId: 1 }).save()
-                return true
-            } catch (err) {
-                return false
-            }
+            const newCategory = await Category.create({
+                name,
+                userId: 1
+            }).save()
+            newCategory.billsCount = 0
+
+            return newCategory
         }
     }
 }

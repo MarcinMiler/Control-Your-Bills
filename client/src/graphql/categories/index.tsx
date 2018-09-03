@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 
 import { CategoriesQuery_categories, CategoriesQuery } from 'src/schemaTypes'
 
-const query = gql`
+export const CATEGORIES_QUERY = gql`
     query CategoriesQuery {
         categories {
             id
@@ -27,7 +27,10 @@ export class FindCategories extends React.PureComponent<Props> {
     public render() {
         const { children } = this.props
         return (
-            <Query<CategoriesQuery> query={query}>
+            <Query<CategoriesQuery>
+                query={CATEGORIES_QUERY}
+                fetchPolicy="cache-and-network"
+            >
                 {({ data, loading }) => {
                     let categories: CategoriesQuery_categories[] = []
 

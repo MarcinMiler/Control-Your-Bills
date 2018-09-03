@@ -28,8 +28,14 @@ export interface AddBillMutationVariables {
 // GraphQL mutation operation: CreateCategoryMutation
 // ====================================================
 
+export interface CreateCategoryMutation_createCategory {
+  id: number;
+  name: string;
+  billsCount: number;
+}
+
 export interface CreateCategoryMutation {
-  createCategory: boolean;
+  createCategory: CreateCategoryMutation_createCategory;
 }
 
 export interface CreateCategoryMutationVariables {

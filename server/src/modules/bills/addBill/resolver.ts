@@ -9,7 +9,7 @@ export const resolver: ResolverMap = {
                 return await Bill.create({
                     ...input,
                     userId: 1,
-                    categoryId: 3
+                    categoryId: 1
                 }).save()
             } catch (err) {
                 return null
