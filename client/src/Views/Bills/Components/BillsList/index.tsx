@@ -4,6 +4,7 @@ import * as _ from 'lodash'
 import { BillsListUI } from './BillsList'
 import { FindCategory } from 'src/graphql/category'
 import { withRouter, RouteComponentProps } from 'react-router'
+import { MutationDeleteBill } from '../../../../graphql/deleteBill'
 
 const invertDirection = {
     asc: 'desc',
@@ -39,24 +40,29 @@ class C extends React.Component<RouteComponentProps<{ id: string }>, State> {
         } = this.props
 
         return (
-            <FindCategory id={id}>
-                {data => {
-                    if (data.loading || !data.category) {
-                        return <div>loading...</div>
-                    }
+            <MutationDeleteBill>
+                {({ deleteBill }) => (
+                    <FindCategory id={id}>
+                        {data => {
+                            if (data.loading || !data.category) {
+                                return <div>loading...</div>
+                            }
 
-                    return (
-                        <BillsListUI
-                            bills={_.orderBy(
-                                data.category.bills,
-                                columnToSort,
-                                sortDirection
-                            )}
-                            handleSort={this.handleSort}
-                        />
-                    )
-                }}
-            </FindCategory>
+                            return (
+                                <BillsListUI
+                                    bills={_.orderBy(
+                                        data.category.bills,
+                                        columnToSort,
+                                        sortDirection
+                                    )}
+                                    deleteBill={deleteBill}
+                                    handleSort={this.handleSort}
+                                />
+                            )
+                        }}
+                    </FindCategory>
+                )}
+            </MutationDeleteBill>
         )
     }
 }

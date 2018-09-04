@@ -5,9 +5,10 @@ export const resolver: ResolverMap = {
     Mutation: {
         deleteBill: async (_, { id }) => {
             try {
-                await Bill.remove(id)
+                await Bill.delete(id)
                 return true
             } catch (err) {
+                console.log(err)
                 return false
             }
         }

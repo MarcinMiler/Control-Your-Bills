@@ -21,10 +21,19 @@ import {
 
 interface Props {
     bills: CategoryQuery_category_bills[]
+    deleteBill: (
+        {
+            varaibles: { id }
+        }: any
+    ) => void
     handleSort: (columnName: string) => void
 }
 
-export const BillsListUI: React.SFC<Props> = ({ bills, handleSort }) => (
+export const BillsListUI: React.SFC<Props> = ({
+    bills,
+    deleteBill,
+    handleSort
+}) => (
     <Container>
         <Legend>
             <Id>ID</Id>
@@ -48,7 +57,13 @@ export const BillsListUI: React.SFC<Props> = ({ bills, handleSort }) => (
                 <Actions>
                     <IconGroup>
                         <EditIcon />
-                        <CloseIcon />
+                        <CloseIcon
+                            onClick={async () =>
+                                await deleteBill({
+                                    variables: { id: bill.id }
+                                })
+                            }
+                        />
                     </IconGroup>
                 </Actions>
             </Bill>
