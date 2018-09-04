@@ -19,6 +19,7 @@ export interface AddBillMutation {
 export interface AddBillMutationVariables {
   title: string;
   price: number;
+  categoryId: string;
 }
 
 /* tslint:disable */

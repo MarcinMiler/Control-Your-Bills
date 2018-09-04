@@ -1,11 +1,14 @@
-import { graphql } from 'react-apollo'
+import * as React from 'react'
+import { Mutation, MutationFn } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import { AddBillMutationVariables, AddBillMutation } from '../../schemaTypes'
+import { AddBillMutation, AddBillMutationVariables } from 'src/schemaTypes'
 
-export const addBillMutation = gql`
-    mutation AddBillMutation($title: String!, $price: Int!) {
-        addBill(input: { title: $title, price: $price }) {
+export const mutation = gql`
+    mutation AddBillMutation($title: String!, $price: Int!, $categoryId: ID!) {
+        addBill(
+            input: { title: $title, price: $price, categoryId: $categoryId }
+        ) {
             id
             title
             date
@@ -13,27 +16,24 @@ export const addBillMutation = gql`
         }
     }
 `
-export interface WithAddBill {
-    addBill: (variables: AddBillMutationVariables) => void
+interface WithAddBill {
+    addBill: MutationFn<AddBillMutation, AddBillMutationVariables>
 }
 
-export const withAddBill = graphql<
-    any,
-    AddBillMutation,
-    AddBillMutationVariables,
-    WithAddBill
->(addBillMutation, {
-    props: ({ mutate }) => ({
-        addBill: async variables => {
-            if (!mutate) {
-                return
-            }
+interface Props {
+    children: (data: WithAddBill) => React.ReactNode | null
+}
 
-            const lol = await mutate({ variables })
-            console.log(lol)
-        }
-    }),
-    options: {
-        refetchQueries: ['bills']
+export class MutationAddBill extends React.PureComponent<Props> {
+    public render() {
+        const { children } = this.props
+
+        return (
+            <Mutation<AddBillMutation, AddBillMutationVariables>
+                mutation={mutation}
+            >
+                {mutate => children({ addBill: mutate })}
+            </Mutation>
+        )
     }
-})
+}

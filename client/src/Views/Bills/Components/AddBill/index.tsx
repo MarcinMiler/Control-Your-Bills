@@ -1,8 +1,9 @@
 import * as React from 'react'
 import * as yup from 'yup'
 import { Formik, Form } from 'formik'
+import { withRouter, RouteComponentProps } from 'react-router'
 
-import { withAddBill, WithAddBill } from 'src/graphql/addBill'
+import { MutationAddBill } from 'src/graphql/addBill'
 import { AddBill } from './AddBill'
 
 const schema = yup.object().shape({
@@ -18,23 +19,36 @@ interface FormValues {
     price: number
 }
 
-export class C extends React.Component<WithAddBill> {
+class C extends React.Component<RouteComponentProps<{ id: string }>> {
     public render() {
+        const {
+            match: {
+                params: { id }
+            }
+        } = this.props
         return (
-            <Formik<{}, FormValues>
-                initialValues={{
-                    title: '',
-                    price: 0
-                }}
-                validationSchema={schema}
-                onSubmit={this.props.addBill}
-            >
-                <Form>
-                    <AddBill />
-                </Form>
-            </Formik>
+            <MutationAddBill>
+                {({ addBill }) => (
+                    <Formik<{}, FormValues>
+                        initialValues={{
+                            title: '',
+                            price: 0
+                        }}
+                        validationSchema={schema}
+                        onSubmit={async ({ title, price }) => {
+                            await addBill({
+                                variables: { title, price, categoryId: id }
+                            })
+                        }}
+                    >
+                        <Form>
+                            <AddBill />
+                        </Form>
+                    </Formik>
+                )}
+            </MutationAddBill>
         )
     }
 }
 
-export const AddBillContainer = withAddBill(C)
+export const AddBillContainer = withRouter(C)
