@@ -107,6 +107,21 @@ export interface CategoryQueryVariables {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: DeleteBillMutation
+// ====================================================
+
+export interface DeleteBillMutation {
+  deleteBill: boolean;
+}
+
+export interface DeleteBillMutationVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
