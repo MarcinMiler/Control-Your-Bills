@@ -2,7 +2,9 @@ import * as React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import { FindCategories } from 'src/graphql/categories'
+import { Subtitle } from 'src/Components/Subtitle'
 import { CategoriesUI } from './Categories'
+import { Container } from './style'
 
 interface State {
     isOpen: boolean
@@ -26,7 +28,11 @@ class C extends React.Component<RouteComponentProps<{ id: string }>, State> {
             <FindCategories>
                 {data => {
                     if (data.loading) {
-                        return <div>loading...</div>
+                        return (
+                            <Container>
+                                <Subtitle>Categories</Subtitle>
+                            </Container>
+                        )
                     }
 
                     return (
