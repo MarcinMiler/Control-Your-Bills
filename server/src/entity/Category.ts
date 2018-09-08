@@ -10,6 +10,7 @@ import {
 
 import { Bill } from './Bills'
 import { User } from './User'
+import { MonthCost } from './MonthCost'
 
 @Entity()
 export class Category extends BaseEntity {
@@ -30,4 +31,7 @@ export class Category extends BaseEntity {
 
     @OneToMany(() => Bill, bill => bill.category)
     bills: Bill[]
+
+    @OneToMany(() => MonthCost, month => month.category)
+    monthCost: MonthCost[]
 }

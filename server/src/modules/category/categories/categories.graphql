@@ -1,8 +1,16 @@
+type MonthCost {
+    id: ID!
+    categoryId: Int!
+    date: String!
+    cost: Int!
+}
+
 type Category {
     id: Int!
     name: String!
     billsCount: Int!
     bills: [Bill!]
+    monthCost: [MonthCost!]
 }
 
 type Query {
