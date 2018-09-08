@@ -5,16 +5,16 @@ import { CreateCategory } from 'src/graphql/addCategory'
 import { Input } from 'src/Components/Input'
 import { Button } from 'src/Components/Button'
 
-interface FormValues {
-    name: string
-}
+// interface FormValues {
+//     name: string
+// }
 
 export const AddCategory: React.SFC<{}> = () => (
     <CreateCategory>
         {({ createCategory }) => (
-            <Formik<{}, FormValues>
+            <Formik<{}, any>
                 initialValues={{ name: '' }}
-                onSubmit={async ({ name }, { resetForm }) => {
+                onSubmit={async ({ name }: any, { resetForm }: any) => {
                     await createCategory({ variables: { name } })
                     resetForm()
                 }}

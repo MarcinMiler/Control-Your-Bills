@@ -14,10 +14,10 @@ const schema = yup.object().shape({
         .moreThan(0)
 })
 
-interface FormValues {
-    title: string
-    price: number
-}
+// interface FormValues {
+//     title: string
+//     price: number
+// }
 
 class C extends React.Component<RouteComponentProps<{ id: string }>> {
     public render() {
@@ -29,13 +29,13 @@ class C extends React.Component<RouteComponentProps<{ id: string }>> {
         return (
             <MutationAddBill>
                 {({ addBill }) => (
-                    <Formik<{}, FormValues>
+                    <Formik<{}, any>
                         initialValues={{
                             title: '',
                             price: 0
                         }}
                         validationSchema={schema}
-                        onSubmit={async ({ title, price }) => {
+                        onSubmit={async ({ title, price }: any) => {
                             await addBill({
                                 variables: { title, price, categoryId: id }
                             })
